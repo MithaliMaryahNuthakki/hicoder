@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.col-container {
+  display: table;
+  width: 100%;
+}
+.col {
+  display: table-cell;
+  padding: 16px;
+  background:#bbb;
+}
+
+
+@media only screen and (max-width: 600px) {
+  .col { 
+    display: block;
+    width: 100%;
+  }
+}
+
+.left, .right {
+  width: 25%;
+}
+
+.middle {
+  width: 50%;
+}
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #04AA6D;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="col-container">
+  <div class="col left" >
+    <h3>Average daily ingest</h3>
+	<div class="slidecontainer">
+		<p>Ingest<span id="ingest-value"style="float:right"></span></br>
+		<input type="range" min="1" max="100" value="50" class="slider" id="ingest"></p>
+		
+		<p>Compression<span id="compression-value"style="float:right"></span></br>
+		<input type="range" min="1" max="100" value="50" class="slider" id="compression"></p>
+	</div>
+  </div>
+	<div class="divider"></div>
+  <div class="col middle">
+    <h2>Column 2</h2>
+    <p>Hello World!</p>
+    <p>Hello World!</p>
+  </div>
+	<div class="divider"></div>
+  <div class="col right" >
+<form>
+  <div>
+	<input id="amount" type="number" value="100" min="0" max="200" oninput="rangeInput.value=amount.value" />
+    <input class="slider"id="rangeInput" type="range" min="0" max="200" oninput="amount.value=rangeInput.value" />
+    
+  </div>
+</form>
+  </div>
+</div>
+
+<script>
+	var ingestslider = document.getElementById("ingest");
+	var ingestoutput = document.getElementById("ingest-value");
+	ingestoutput.innerHTML = ingestslider.value;
+	ingestslider.oninput = function() {
+		ingestoutput.innerHTML = this.value+" GB/Day";
+	}
+	var compressionslider = document.getElementById("compression");
+	var compressionoutput = document.getElementById("compression-value");
+	compressionoutput.innerHTML = compressionslider.value;
+	compressionslider.oninput = function() {
+		compressionoutput.innerHTML = this.value;
+	}
+
+</script>
+
+</body>
+</html>
